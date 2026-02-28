@@ -5,18 +5,17 @@ import { Terminal } from "xterm";
 import { FitAddon } from "xterm-addon-fit";
 import "xterm/css/xterm.css";
 
-// ANSI color helpers (chalk-like, but browser-safe)
 const c = {
-  cyan:    (s: string) => `\x1b[36m${s}\x1b[0m`,
-  green:   (s: string) => `\x1b[32m${s}\x1b[0m`,
-  yellow:  (s: string) => `\x1b[33m${s}\x1b[0m`,
-  red:     (s: string) => `\x1b[31m${s}\x1b[0m`,
+  cyan: (s: string) => `\x1b[36m${s}\x1b[0m`,
+  green: (s: string) => `\x1b[32m${s}\x1b[0m`,
+  yellow: (s: string) => `\x1b[33m${s}\x1b[0m`,
+  red: (s: string) => `\x1b[31m${s}\x1b[0m`,
   magenta: (s: string) => `\x1b[35m${s}\x1b[0m`,
-  blue:    (s: string) => `\x1b[34m${s}\x1b[0m`,
-  white:   (s: string) => `\x1b[97m${s}\x1b[0m`,
-  gray:    (s: string) => `\x1b[90m${s}\x1b[0m`,
-  bold:    (s: string) => `\x1b[1m${s}\x1b[0m`,
-  dim:     (s: string) => `\x1b[2m${s}\x1b[0m`,
+  blue: (s: string) => `\x1b[34m${s}\x1b[0m`,
+  white: (s: string) => `\x1b[97m${s}\x1b[0m`,
+  gray: (s: string) => `\x1b[90m${s}\x1b[0m`,
+  bold: (s: string) => `\x1b[1m${s}\x1b[0m`,
+  dim: (s: string) => `\x1b[2m${s}\x1b[0m`,
 };
 
 export default function InteractiveTerminal() {
@@ -34,27 +33,27 @@ export default function InteractiveTerminal() {
       letterSpacing: 0.5,
       scrollback: 1000,
       theme: {
-        background:    "#0a0a0f",
-        foreground:    "#e2e8f0",
-        cursor:        "#00ff9f",
-        cursorAccent:  "#0a0a0f",
+        background: "#0a0a0f",
+        foreground: "#e2e8f0",
+        cursor: "#00ff9f",
+        cursorAccent: "#0a0a0f",
         selectionBackground: "rgba(0,255,159,0.2)",
-        black:         "#1a1a2e",
-        red:           "#ff6b6b",
-        green:         "#00ff9f",
-        yellow:        "#ffd93d",
-        blue:          "#4dabf7",
-        magenta:       "#c77dff",
-        cyan:          "#48cae4",
-        white:         "#e2e8f0",
-        brightBlack:   "#4a5568",
-        brightRed:     "#ff8e8e",
-        brightGreen:   "#69ffbe",
-        brightYellow:  "#ffe066",
-        brightBlue:    "#74c0fc",
+        black: "#1a1a2e",
+        red: "#ff6b6b",
+        green: "#00ff9f",
+        yellow: "#ffd93d",
+        blue: "#4dabf7",
+        magenta: "#c77dff",
+        cyan: "#48cae4",
+        white: "#e2e8f0",
+        brightBlack: "#4a5568",
+        brightRed: "#ff8e8e",
+        brightGreen: "#69ffbe",
+        brightYellow: "#ffe066",
+        brightBlue: "#74c0fc",
         brightMagenta: "#da8fff",
-        brightCyan:    "#72d9ed",
-        brightWhite:   "#f8fafc",
+        brightCyan: "#72d9ed",
+        brightWhite: "#f8fafc",
       },
     });
 
@@ -111,10 +110,10 @@ export default function InteractiveTerminal() {
       writeln(`  ${c.dim("│")}`);
 
       const steps = [
-        ["◆", "cyan",    "Scaffolding project structure"],
-        ["◆", "green",   "Installing dependencies"],
+        ["◆", "cyan", "Scaffolding project structure"],
+        ["◆", "green", "Installing dependencies"],
         ["◆", "magenta", "Configuring TypeScript"],
-        ["◆", "yellow",  "Setting up dev server"],
+        ["◆", "yellow", "Setting up dev server"],
       ];
 
       for (const [icon, color, label] of steps) {
@@ -310,7 +309,7 @@ export default function InteractiveTerminal() {
           <div
             ref={terminalRef}
             style={{
-              height: "460px",
+              height: "520px",
               width: "100%",
               padding: "8px 4px",
             }}
