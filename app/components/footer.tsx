@@ -5,7 +5,7 @@ import { Twitter, Instagram, Linkedin, Github } from "lucide-react";
 
 export const Footer = () => {
     return (
-        <footer className="relative w-full overflow-hidden bg-[#050505] text-white pt-20 pb-10 mt-32 border-t border-neutral-900">
+        <footer id="contact" className="relative w-full overflow-hidden bg-[#050505] text-white pt-20 pb-10 mt-32 border-t border-neutral-900">
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16">
                     {/* Brand & Description */}
@@ -20,10 +20,10 @@ export const Footer = () => {
                             Horizon empowers developers to transform complex ideas into robust applications instantly — making scaffolding easier to build, understand, and scale.
                         </p>
                         <div className="flex items-center gap-5 text-neutral-400 mt-2">
-                            <Link href="#" className="hover:text-white transition-colors"><Twitter size={20} /></Link>
-                            <Link href="#" className="hover:text-white transition-colors"><Instagram size={20} /></Link>
-                            <Link href="#" className="hover:text-white transition-colors"><Linkedin size={20} /></Link>
-                            <Link href="#" className="hover:text-white transition-colors"><Github size={20} /></Link>
+                            <Link href="https://x.com/KshitizSri07" target="_blank" className="hover:text-white transition-colors"><Twitter size={20} /></Link>
+                            <Link href="https://instagram.com/kshitiz.srivastav" target="_blank" className="hover:text-white transition-colors"><Instagram size={20} /></Link>
+                            <Link href="https://www.linkedin.com/in/kshitiz-prakash-srivastava-a9b797256/" target="_blank" className="hover:text-white transition-colors"><Linkedin size={20} /></Link>
+                            <Link href="https://github.com/StackSamuraiK" target="_blank" className="hover:text-white transition-colors"><Github size={20} /></Link>
                         </div>
                     </div>
 
@@ -32,23 +32,19 @@ export const Footer = () => {
                         <div className="flex flex-col gap-4">
                             <h3 className="font-semibold text-white">Product</h3>
                             <Link href="#" className="text-sm text-neutral-400 hover:text-white transition-colors">Features</Link>
-                            <Link href="#" className="text-sm text-neutral-400 hover:text-white transition-colors">Pricing</Link>
-                            <Link href="#" className="text-sm text-neutral-400 hover:text-white transition-colors">Integrations</Link>
-                            <Link href="#" className="text-sm text-neutral-400 hover:text-white transition-colors">Changelog</Link>
+                            <Link href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'pricing' } })); }} className="text-sm text-neutral-400 hover:text-white transition-colors">Pricing</Link>
+                            <Link href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'integrations' } })); }} className="text-sm text-neutral-400 hover:text-white transition-colors">Integrations</Link>
+                            <Link href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'changelog' } })); }} className="text-sm text-neutral-400 hover:text-white transition-colors">Changelog</Link>
                         </div>
                         <div className="flex flex-col gap-4">
                             <h3 className="font-semibold text-white">Resources</h3>
-                            <Link href="#" className="text-sm text-neutral-400 hover:text-white transition-colors">Documentation</Link>
-                            <Link href="#" className="text-sm text-neutral-400 hover:text-white transition-colors">Tutorials</Link>
-                            <Link href="#" className="text-sm text-neutral-400 hover:text-white transition-colors">Blog</Link>
-                            <Link href="#" className="text-sm text-neutral-400 hover:text-white transition-colors">Support</Link>
+                            <Link href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('openModal', { detail: { type: 'docs' } })); }} className="text-sm text-neutral-400 hover:text-white transition-colors">Documentation</Link>
+                            <Link href="#" onClick={(e) => { e.preventDefault(); document.getElementById('how-to-use-horizon-cli')?.scrollIntoView({ behavior: 'smooth' }); }} className="text-sm text-neutral-400 hover:text-white transition-colors">Tutorials</Link>
                         </div>
                         <div className="flex flex-col gap-4">
                             <h3 className="font-semibold text-white">Company</h3>
-                            <Link href="#" className="text-sm text-neutral-400 hover:text-white transition-colors">About</Link>
-                            <Link href="#" className="text-sm text-neutral-400 hover:text-white transition-colors">Careers</Link>
-                            <Link href="#" className="text-sm text-neutral-400 hover:text-white transition-colors">Contact</Link>
-                            <Link href="#" className="text-sm text-neutral-400 hover:text-white transition-colors">Partners</Link>
+                            <Link href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="text-sm text-neutral-400 hover:text-white transition-colors">About</Link>
+                            <Link href="#" onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }} className="text-sm text-neutral-400 hover:text-white transition-colors">Contact</Link>
                         </div>
                     </div>
                 </div>

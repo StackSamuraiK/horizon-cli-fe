@@ -1,14 +1,37 @@
 "use client"
 
-import { useState } from 'react';
-import { X } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { X, Copy, Check } from 'lucide-react';
 
 export const AppBar = () => {
-    const [isPricingModalOpen, setIsPricingModalOpen] = useState(false);
+    const [activeModal, setActiveModal] = useState<string | null>(null);
+    const [copied, setCopied] = useState(false);
+
+    useEffect(() => {
+        const handleOpenPricing = () => setActiveModal('pricing');
+        const handleOpenModal = (e: Event) => {
+            const customEvent = e as CustomEvent<{ type: string }>;
+            setActiveModal(customEvent.detail?.type || 'pricing');
+        };
+
+        window.addEventListener('openPricingModal', handleOpenPricing);
+        window.addEventListener('openModal', handleOpenModal);
+
+        return () => {
+            window.removeEventListener('openPricingModal', handleOpenPricing);
+            window.removeEventListener('openModal', handleOpenModal);
+        };
+    }, []);
+
+    const handleCopy = async () => {
+        await navigator.clipboard.writeText("npx create-horizon-app@latest");
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
 
     const handleScroll = (id: string) => {
         if (id === 'Pricing') {
-            setIsPricingModalOpen(true);
+            setActiveModal('pricing');
             return;
         }
         const element = document.getElementById(id.toLowerCase().replace(/\s+/g, '-'));
@@ -80,35 +103,76 @@ export const AppBar = () => {
                 </ul>
             </div>
 
-            {/* Pricing Modal */}
-            {isPricingModalOpen && (
+            {/* Universal Modal */}
+            {activeModal && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200">
                     <div
                         className="relative w-full max-w-sm p-8 rounded-xl bg-[#0a0a0f] border border-stone-800/50 shadow-2xl"
                         style={{ fontFamily: "var(--font-inter-sans, Inter, sans-serif)" }}
                     >
                         <button
-                            onClick={() => setIsPricingModalOpen(false)}
+                            onClick={() => setActiveModal(null)}
                             className="absolute top-4 right-4 text-stone-500 hover:text-stone-300 transition-colors"
                         >
                             <X className="w-4 h-4" />
                         </button>
 
                         <div className="flex flex-col items-center text-center gap-4 mt-2">
-                            {/* Same Logo as Navbar */}
+                            {/* Logo */}
                             <div className="w-8 h-8 rounded-md bg-white text-black flex items-center justify-center font-bold text-xl mb-1">
                                 H
                             </div>
 
-                            <h3 className="text-lg font-semibold text-stone-100 tracking-tight">Thank you for liking Horizon!</h3>
+                            {activeModal === 'pricing' && (
+                                <>
+                                    <h3 className="text-lg font-semibold text-stone-100 tracking-tight">Thank you for liking Horizon!</h3>
+                                    <p className="text-stone-400 leading-relaxed text-sm">
+                                        Currently we don't charge a single dime to you, as you will be using your own API key.
+                                    </p>
+                                    <p className="text-stone-500 text-sm mt-2">
+                                        But soon we'll be introducing pricing. Till then keep using Horizon.
+                                    </p>
+                                </>
+                            )}
 
-                            <p className="text-stone-400 leading-relaxed text-sm">
-                                Currently we don't charge a single dime to you, as you will be using your own API key.
-                            </p>
+                            {activeModal === 'docs' && (
+                                <>
+                                    <h3 className="text-lg font-semibold text-stone-100 tracking-tight">Documentation</h3>
+                                    <p className="text-stone-400 leading-relaxed text-sm">
+                                        We are actively working on it. Thanks for keeping patience!
+                                    </p>
+                                </>
+                            )}
 
-                            <p className="text-stone-500 text-sm mt-2">
-                                But soon we'll be introducing pricing. Till then keep using Horizon.
-                            </p>
+                            {activeModal === 'integrations' && (
+                                <>
+                                    <h3 className="text-lg font-semibold text-stone-100 tracking-tight">Integrations</h3>
+                                    <p className="text-stone-400 leading-relaxed text-sm">
+                                        Copy this install command to integrate Horizon into your existing workflow:
+                                    </p>
+
+                                    <div className="w-full flex items-center justify-between mt-2 bg-stone-900 border border-stone-800 rounded-lg p-3">
+                                        <code className="text-stone-300 text-sm font-mono">
+                                            npx create-horizon-app@latest
+                                        </code>
+                                        <button
+                                            onClick={handleCopy}
+                                            className="text-stone-400 hover:text-white transition-colors"
+                                        >
+                                            {copied ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
+                                        </button>
+                                    </div>
+                                </>
+                            )}
+
+                            {activeModal === 'changelog' && (
+                                <>
+                                    <h3 className="text-lg font-semibold text-stone-100 tracking-tight">Changelog v1.0</h3>
+                                    <p className="text-stone-400 leading-relaxed text-sm">
+                                        This is the first stable version of Horizon CLI. Keep enjoying it! Let's build something amazing.
+                                    </p>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
