@@ -27,7 +27,7 @@ export default function UsageTerminal() {
         const term = new Terminal({
             cursorBlink: true,
             cursorStyle: "bar",
-            fontSize: 14,
+            fontSize: window.innerWidth < 768 ? 11 : 14,
             fontFamily: '"JetBrains Mono", "Fira Code", "Cascadia Code", monospace',
             lineHeight: 1.6,
             letterSpacing: 0.5,
@@ -197,7 +197,7 @@ export default function UsageTerminal() {
                 {/* Terminal body */}
                 <div
                     ref={terminalRef}
-                    className="w-full p-4 h-[700px]"
+                    className="w-full p-2 md:p-4 h-[400px] md:h-[600px] lg:h-[700px] overflow-hidden"
                 />
             </div>
         </div>
