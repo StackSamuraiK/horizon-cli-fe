@@ -24,7 +24,7 @@ export const AppBar = () => {
     }, []);
 
     const handleCopy = async () => {
-        await navigator.clipboard.writeText("npx create-horizon-app@latest");
+        await navigator.clipboard.writeText("npm i @kshitiz-2002/horizon-cli");
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     };
