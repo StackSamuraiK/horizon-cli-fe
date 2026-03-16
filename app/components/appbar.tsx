@@ -153,7 +153,7 @@ export const AppBar = () => {
 
                                     <div className="w-full flex items-center justify-between mt-2 bg-stone-900 border border-stone-800 rounded-lg p-3">
                                         <code className="text-stone-300 text-sm font-mono">
-                                            npx create-horizon-app@latest
+                                            npm i @kshitiz-2002/horizon-cli
                                         </code>
                                         <button
                                             onClick={handleCopy}
