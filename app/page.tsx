@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { Hero } from "./components/hero";
 import { AppBar } from "./components/appbar";
+import { AgentSection } from "./components/agent";
 import { Usage } from "./components/usage";
 import { Footer } from "./components/footer";
 
@@ -9,6 +9,7 @@ export default function Home() {
     <div>
       <AppBar />
       <Hero />
+      <AgentSection />
       <Usage />
       <Footer />
     </div>
